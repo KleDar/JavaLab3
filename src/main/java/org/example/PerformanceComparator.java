@@ -87,4 +87,38 @@ public class PerformanceComparator {
                 linkedListTime,
                 iterations);
     }
+
+    /**
+     * Тестирует производительность получения элементов из списка по индексу.
+     *
+     * @param iterations количество операций получения элемента
+     * @return TestResult с информацией о времени выполнения для обеих реализаций списка
+     */
+    public static TestResult testGet(int iterations) {
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
+
+        // Заполняем списки
+        for (int i = 0; i < iterations; i++) {
+            arrayList.add(i);
+            linkedList.add(i);
+        }
+
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            arrayList.get(i % iterations);
+        }
+        long arrayListTime = System.nanoTime() - start;
+
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            linkedList.get(i % iterations);
+        }
+        long linkedListTime = System.nanoTime() - start;
+
+        return new TestResult("Получение элемента",
+                arrayListTime ,
+                linkedListTime,
+                iterations);
+    }
 }
