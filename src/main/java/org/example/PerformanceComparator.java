@@ -1,4 +1,8 @@
 package org.example;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Утилитный класс для сравнения производительности реализаций ArrayList и LinkedList
  * интерфейса List при выполнении различных операций.
@@ -55,5 +59,32 @@ public class PerformanceComparator {
         public int getIterations() {
             return iterations;
         }
+    }
+    /**
+     * Тестирует производительность добавления элементов в конец списка.
+     *
+     * @param iterations количество элементов для добавления в ходе теста
+     * @return TestResult с информацией о времени выполнения для обеих реализаций списка
+     */
+    public static TestResult testAddAtEnd(int iterations) {
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
+
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            arrayList.add(i);
+        }
+        long arrayListTime = System.nanoTime() - start;
+
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            linkedList.add(i);
+        }
+        long linkedListTime = System.nanoTime() - start;
+
+        return new TestResult("Добавление в конец",
+                arrayListTime,
+                linkedListTime,
+                iterations);
     }
 }
