@@ -12,6 +12,8 @@ public class Main {
         results.add(PerformanceComparator.testAddAtEnd(iterations));
         results.add(PerformanceComparator.testAddAtBeginning(iterations));
         results.add(PerformanceComparator.testGet(iterations));
+        results.add(PerformanceComparator.testRemoveFromBeginning(iterations));
+        results.add(PerformanceComparator.testRemoveFromEnd(iterations));
         // Выводим результаты
         ResultPrinter.printResults(results);
 

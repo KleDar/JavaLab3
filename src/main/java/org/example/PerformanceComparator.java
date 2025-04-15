@@ -150,5 +150,79 @@ public class PerformanceComparator {
                 iterations);
     }
 
+    /**
+     * Тестирует производительность удаления элементов с конца списка.
+     *
+     * @param iterations количество операций удаления
+     * @return TestResult с информацией о времени выполнения для обеих реализаций списка
+     */
+    public static TestResult testRemoveFromEnd(int iterations) {
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
 
+        // Заполняем списки
+        for (int i = 0; i < iterations; i++) {
+            arrayList.add(i);
+            linkedList.add(i);
+        }
+
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            if (!arrayList.isEmpty()) {
+                arrayList.remove(arrayList.size() - 1);
+            }
+        }
+        long arrayListTime = System.nanoTime() - start;
+
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            if (!linkedList.isEmpty()) {
+                linkedList.remove(linkedList.size() - 1);
+            }
+        }
+        long linkedListTime = System.nanoTime() - start;
+
+        return new TestResult("Удаление с конца",
+                arrayListTime ,
+                linkedListTime ,
+                iterations);
+    }
+
+    /**
+     * Тестирует производительность удаления элементов из начала списка.
+     *
+     * @param iterations количество операций удаления
+     * @return TestResult с информацией о времени выполнения для обеих реализаций списка
+     */
+    public static TestResult testRemoveFromBeginning(int iterations) {
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
+
+        // Заполняем списки
+        for (int i = 0; i < iterations; i++) {
+            arrayList.add(i);
+            linkedList.add(i);
+        }
+
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            if (!arrayList.isEmpty()) {
+                arrayList.remove(0);
+            }
+        }
+        long arrayListTime = System.nanoTime() - start;
+
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            if (!linkedList.isEmpty()) {
+                linkedList.remove(0);
+            }
+        }
+        long linkedListTime = System.nanoTime() - start;
+
+        return new TestResult("Удаление с начала",
+                arrayListTime ,
+                linkedListTime ,
+                iterations);
+    }
 }
