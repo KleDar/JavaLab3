@@ -10,6 +10,7 @@ public class Main {
 
         // Выполняем тесты
         results.add(PerformanceComparator.testAddAtEnd(iterations));
+        results.add(PerformanceComparator.testAddAtBeginning(iterations));
         results.add(PerformanceComparator.testGet(iterations));
         // Выводим результаты
         ResultPrinter.printResults(results);

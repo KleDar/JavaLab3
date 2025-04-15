@@ -89,6 +89,34 @@ public class PerformanceComparator {
     }
 
     /**
+     * Тестирует производительность добавления элементов в начало списка.
+     *
+     * @param iterations количество элементов для добавления в ходе теста
+     * @return TestResult с информацией о времени выполнения для обеих реализаций списка
+     */
+    public static TestResult testAddAtBeginning(int iterations) {
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
+
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            arrayList.add(0, i);
+        }
+        long arrayListTime = System.nanoTime() - start;
+
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            linkedList.add(0, i);
+        }
+        long linkedListTime = System.nanoTime() - start;
+
+        return new TestResult("Добавление в начало",
+                arrayListTime ,
+                linkedListTime,
+                iterations);
+    }
+
+    /**
      * Тестирует производительность получения элементов из списка по индексу.
      *
      * @param iterations количество операций получения элемента
@@ -121,4 +149,6 @@ public class PerformanceComparator {
                 linkedListTime,
                 iterations);
     }
+
+
 }
